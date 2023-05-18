@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+{% load static %}
+
+<div class="row">
+    <div class="col">
+        {% include 'base/topic-component.html' %}
+    </div>
+
+    <div class="col-6">
+        <div class="text-center">
+        <img src="{% static 'images/user.png' %}" class="img-thumbnail" alt="user image" style="border-radius: 50%;"  width="100px">
+        <h1>{{user.username}}</h1>
+        <div><a href="{% url 'profile' user.id %}">@{{user}}</a></div>
+        <span class="rounded-pill" style="text-decoration: none; background-color: rgb(200, 200, 200); padding: 4px;"><a href="">Edit profile</a></span>
+        </div>
+        <h2>About</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+        <br>
+
+        <div>
+            <h2>
+                <small>Study Rooms hosted by {{user.username}}</small>
+            </h2>
+            <hr>
+            
+    
+            {% include 'base/feed-component.html' %}
+            </div>
+        
+    </div>
+
+    <div class="col">
+        {% include 'base/activity-component.html' %}
+    </div>
+
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-8">
+
+        <div class="card">
+            <h3 class="card-header">
+                Study Room:
+                <span>
+                    <a href="{% url 'update-room' room.id %}">Edit</a>
+                    <a href="{% url 'delete-room' room.id %}">Delete</a>
+                </span>
+            </h3>
+            <div class="card-body">
+                <h5 class="card-title">{{room.name}}</h5>
+                <p>Hosted by: <a href="{% url 'profile' room.host.id %}">@{{room.host}}</a> </p>
+                <p class="card-text">{{room.description}}</p>
+                <span class="rounded-pill" style="background-color: rgb(229, 229, 231); padding: 4px;">Topic:
+                    {{room.topic.name}}</span>
+            </div>
+            <div class="card-footer">
+
+                {% for message in roomMessages %}
+                <div>
+                    <small><a href="{% url 'profile' message.user.id %}">@{{message.user}}</a> {{message.created|timesince}} ago</small>
+                    <p>{{message.body}}</p>
+                    {% if request.user == message.user %}
+                    <a href="{% url 'delete-message' message.id %}">Delete</a>
+                    {% endif %}
+                </div>
+                
+                <hr>
+                {% endfor %}
+                <form method="POST" action="">
+                    {% csrf_token %}
+        
+                    <input type="text" name="body" placeholder="Add a message..." />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-3">
+
+        <div class="card" style="width: 18rem;">
+            <h2 class="card-header text-center">
+                Participants
+            </h2>
+            <ul class="list-group list-group-flush">
+                {% for participant in participants %}
+                <li class="list-group-item">
+                    <div>{{participant.username}}</div>
+                    <a href="{% url 'profile' participant.id %}">@{{participant}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,25 @@
+
+{% load static %}
+
+    <div class="card" style="width: 20rem;">
+        <h2 class="card-header text-center">
+            Recent Activities
+        </h2>
+        <ul class="list-group list-group-flush">
+            {% for message in allMessages %}
+          <li class="list-group-item">
+            <div style="width: 18rem;">
+                <div class="card-body">
+                    <small class="card-subtitle mb-2 text-body-secondary">
+                        <a href="{% url 'profile' message.user.id %}"><img src="{% static 'images/user.png' %}" alt="pic" height="24">@{{message.user.username}}</a>  {{message.created|timesince}} ago
+                    </small>
+                    <p class="card-text">replied in room "<a href="{% url 'room' message.room.id %}">{{message.room.name}}"</a></p>
+                    <p class="card-footer">"{{message}}"</p>
+                </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      

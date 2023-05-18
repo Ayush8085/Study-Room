@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        {% include 'base/topic-component.html' %}
+    </div>
+
+    <div class="col-6">
+        <div class="card">
+        <h2 class="text-center">
+            <small>Study Rooms</small>
+        </h2>
+        <span class="text-center">Total rooms available: {{roomCount}}</span>
+        <hr>
+        
+
+        {% include 'base/feed-component.html' %}
+        </div>
+    </div>
+
+    <div class="col">
+        {% include 'base/activity-component.html' %}
+    </div>
+
+
+</div>
+
+{% endblock content %}
