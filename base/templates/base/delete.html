@@ -4,10 +4,12 @@
 
 <form method="POST" action="">
     {% csrf_token %}
-    <p>Are you sure you want to delete {{obj}}?</p>
+    <div class="text-center">
+        <h3>Are you sure you want to delete "{{obj}}"?</h3>
 
-    <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
-    <input type="submit" value="Delete" />
+        <a href="{{request.META.HTTP_REFERER}}"  class="btn btn-secondary">Go Back</a>
+        <input type="submit" class="btn btn-primary" value="Delete" />
+    </div>
 </form>
 
 {% endblock content %}

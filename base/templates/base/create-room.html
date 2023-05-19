@@ -1,13 +1,33 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<h3>Create/Update Room</h3>
 
 <form method="POST" action="">
     {% csrf_token %}
 
-    {{form.as_p}}
+    <div class="mb-3">    
+        <input type="text" name="room-topic" value="{{room.topic.name}}" class="form-control" list="room-topics" placeholder="Room Topic">
+        <datalist id="room-topics">
+            <select id="room-topic">
+                {% for topic in topics %}
+                <option value="{{topic.name}}"></option>
+                {% endfor %}
+            </select>
+        </datalist>
+    </div>
 
-    <input type="submit" />
+    <div class="mb-3">
+        {{form.name}}
+    </div>
+
+    <div class="mb-3">
+        {{form.description}}
+    </div>
+
+    <a href="{% url 'home' %}" class="btn btn-secondary">Go Back</a>
+    <input type="submit" class="btn btn-primary" value="Submit" />
 </form>
+
 
 {% endblock content %}

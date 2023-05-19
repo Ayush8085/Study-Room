@@ -16,31 +16,49 @@
             <div class="card-body">
                 <h5 class="card-title">{{room.name}}</h5>
                 <p>Hosted by: <a href="{% url 'profile' room.host.id %}">@{{room.host}}</a> </p>
-                <p class="card-text">{{room.description}}</p>
                 <span class="rounded-pill" style="background-color: rgb(229, 229, 231); padding: 4px;">Topic:
                     {{room.topic.name}}</span>
-            </div>
-            <div class="card-footer">
-
-                {% for message in roomMessages %}
-                <div>
-                    <small><a href="{% url 'profile' message.user.id %}">@{{message.user}}</a> {{message.created|timesince}} ago</small>
-                    <p>{{message.body}}</p>
-                    {% if request.user == message.user %}
-                    <a href="{% url 'delete-message' message.id %}">Delete</a>
-                    {% endif %}
                 </div>
                 
-                <hr>
-                {% endfor %}
-                <form method="POST" action="">
-                    {% csrf_token %}
+        </div>
         
-                    <input type="text" name="body" placeholder="Add a message..." />
-                </form>
+        <div class="container mt-3" style="width: 70rem;">
+            
+            <div class="row  d-flex ">
+                
+                <div class="col-md-8">
+                    
+                    <div class="headings d-flex justify-content-between align-items-center">
+                        <h5>Room Messages</h5>
+                    </div>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+            
+                        <input type="text" name="body" placeholder="Add a message..." />
+                    </form>
+                    
+                    {% for message in roomMessages %}
+                    <div class="card p-3 mt-2">
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="user d-flex flex-row align-items-center">
+                                <img src="https://i.imgur.com/C4egmYM.jpg" width="30"
+                                    class="user-img rounded-circle mr-2">
+                                <span><small class="font-weight-bold text-primary"><a href="{% url 'profile' message.user.id %}">@{{message.user}}</a></small> <small
+                                        class="font-weight-bold">{{message.body}}</small></span>
+                            </div>
+
+                            <small>{{message.created|timesince}} ago</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
+
+
 
     <div class="col-3">
 

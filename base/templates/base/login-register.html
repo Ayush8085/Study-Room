@@ -3,19 +3,21 @@
 {% block content %}
 
 {% if page == 'login' %}
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
 
-        <input type="text" name="username" placeholder="Enter Username" />
-        <input type="password" name="password" placeholder="Enter Password" />
+<form method="POST" action="">
+    {% csrf_token %}
+    <div class="mb-3">
+        <input type="text" name="username" class="form-control" id="exampleInputPassword1" placeholder="Enter Username">
+        <br>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+        <br>
 
-        <input type="submit" value="Login" />
-    </form>
-
-    <p>Haven't Signed Up yet?</p>
-    <a href="{% url 'register' %}">Sign Up</a>
-</div>
+        <input type="submit" class="btn btn-secondary" value="Login" />
+    </div>
+    
+        <p>Haven't Signed Up yet?</p>
+        <a href="{% url 'register' %}">Sign Up</a>
+</form>
 
 {% else %}
 
