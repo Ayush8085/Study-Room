@@ -1,10 +1,11 @@
 ﻿# Study Room
  
-**Live link :- comming soon**
+**Live link :- https://study-app.onrender.com**
 
 **Run command in shell/teminal**
 > python manage.py runserver
 
+* A django web app with **CRUD** functionality.
 
 ## Home Page
 
