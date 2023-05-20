@@ -2,19 +2,19 @@
 {% for room in rooms %}
     <span class="card-text">
       <a class="navbar-brand" href="#">
-        <img src="{% static 'images/user.png' %}" alt="pic" height="24">
+        <img src="{{room.host.avatar.url}}" alt="pic" height="24">
       </a>
       <span><a href="{% url 'profile' room.host.id %}">@{{room.host.username}}</a>  {{room.created|timesince}} ago</span>
     </span>
     <div class="card-body">
       <h5 class="card-title"><a href="{% url 'room' room.id %}">{{room.name}}</a></h5>
-      <p class="card-text">{{room.description}}</p>
+      <p class="card-text">{{room.description|slice:150}}</p>
       <div style="margin-bottom: 4px;">
       <a href="{% url 'update-room' room.id %}" class="btn btn-secondary">Edit</a>
       <a href="{% url 'delete-room' room.id %}" class="btn btn-secondary">Delete</a>
     </div>
-      <span class="rounded-pill" style="background-color: rgb(229, 229, 231); padding: 4px;">Topic: {{room.topic.name}}</span>
-      <span class="rounded-pill" style="background-color: rgb(229, 229, 231); padding: 4px;">Participants: {{room.participants.all.count}}</span>
+      <span>Topic: {{room.topic.name}} <b>|</b> </span>
+      <span>Participants: {{room.participants.all.count}}</span>
       <hr>
     </div>
   {% endfor %}
